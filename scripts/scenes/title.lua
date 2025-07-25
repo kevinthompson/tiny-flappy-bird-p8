@@ -1,5 +1,6 @@
 title_scene = scene:extend({
   init = function(_ENV)
+    -- set transition table to game palette
     transition.transition_table = [[
       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
       1,1,129,129,129,129,129,129,129,129,0,0,0,0,0
@@ -19,7 +20,10 @@ title_scene = scene:extend({
       15,143,143,134,134,134,134,5,5,5,133,133,128,128,0
     ]]
 
+    -- get high score
     best = dget(0)
+
+    -- initialize button
     play_button = button({
       y = best > 0 and 42 or 40,
       text = "❎ pLAY",
@@ -27,6 +31,7 @@ title_scene = scene:extend({
   end,
 
   update = function(_ENV)
+    -- load game if any button pressed
     if input() then
       scene:load(game_scene)
     end

@@ -1,4 +1,5 @@
 transition = class:extend({
+  -- allow transition() function to fade out and back in
   __call = function(_ENV, callback)
     callback = callback or _noop
     transition:fade_out(function()
@@ -15,6 +16,7 @@ transition = class:extend({
     _ENV:fade(0,16,callback)
   end,
 
+  -- fade in or out based on params
   fade = function(_ENV, first, last, callback)
     local dir = last > first and 1 or -1
     async(function()
@@ -26,6 +28,7 @@ transition = class:extend({
     end)
   end,
 
+  -- step through the transition table palette adjusting colors
   step = function(_ENV, i)
     local fadetable = {}
     local table = transition_table or default_transition_table
@@ -43,6 +46,7 @@ transition = class:extend({
     end
   end,
 
+  -- define transition table for default palette
   default_transition_table = [[
     0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
     1,1,129,129,129,129,129,129,129,129,0,0,0,0,0
@@ -61,5 +65,6 @@ transition = class:extend({
     14,14,14,134,134,141,141,2,2,133,130,130,128,128,0
     15,143,143,134,134,134,134,5,5,5,133,133,128,128,0
   ]]
+
   -- generated at http://kometbomb.net/pico8/fadegen.html
 })
