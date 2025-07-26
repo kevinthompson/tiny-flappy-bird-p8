@@ -426,8 +426,8 @@
 
         if (!is_fullscreen)
           if (!p8_touch_detected)
-            // fullscreen: update every frame for safety. should be cheap!
             if (p8_update_layout_hash == update_hash) {
+              // fullscreen: update every frame for safety. should be cheap!
               // mobile: update every frame because nothing can be trusted
               //console.log("p8_update_layout(): skipping");
               requestAnimationFrame(p8_update_layout);
@@ -855,9 +855,8 @@
 
         for (j = 0; j < gamepad.buttons.length; j++)
           if (gamepad.buttons[j].value > 0 || gamepad.buttons[j].pressed) {
-            if (j < 4)
-              button_state |=
-                0x10 << (((j + 1) / 2) & 1); // 0 1 1 0 -- A,X -> O,X on xbox360
+            if (j < 4) button_state |= 0x10 << (((j + 1) / 2) & 1);
+            // 0 1 1 0 -- A,X -> O,X on xbox360
             else if (j >= 6 && j <= 8) button_state |= 0x40;
           }
 
@@ -1046,7 +1045,7 @@
 
       .p8_start_button{
       	cursor:pointer;
-      	background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAD/0lEQVR4Ae2dP0hbXRjGT0oqBLFUSPhKRidtHbpk/KDqEjQ0i9xSSin4jU6lEtwuri7f5FhBihTFJWAkkx06uri0o6OLQ7tIwDp0uFGPObnXk3P/nJub38MZwpv3vCc57/M775orOq5A9vSIK7CrfPJHXn3bT+FFjM05EAABCerjf0s9kf8/twLi6i6dfP1zmQEQYEP6LvZy1LhcQcfLfjxBAATYmwT6fldnQPjZAwEQkI4ZIDva762PysVm9EAABMQzA4LjMiVR+TfaahAwxMoVHTfhI6++7afwIsbmHAhgBmTaa+kUBNAAGoBoAA1ANIAGIBpAA1DCysdRdHXqMrE/sHU2DgEoZQR42my2Y/3pjXo1A7RBQHYJ8LS0eBHwbeuo1JOjRvx2xU2YShszAALSpEHZMuPPi8QnCBglAvTdpGYGe3l4BQG2VXTcyJe7vuaurxVmZgszs2JhOmCpOVHtijbi/aM47goCRmkGmMmt1IQQGyeHCZzVKV8zAyAgNhXOTY7bbLaFEKIc1rnJuxsCIKCfGvVqr7utOlflMklWICDrBLiV2oN+V3PkiO9UGHC6BOfYmhAQkHUCdF55NUdnl8qNOl2Cc3SY0/klEAAB/aR6zSzHz5VmbIXPhIBMKVd0XCsHr05dDt1lbZ2NQwAzIFKFeXnN5keS7oYACNDT0uJFwLeto1JPjhfRoUemxC8/WpIgAALCSfV7GG5U16sk2RUEQICer4Pd+uLxeyHEjz9fBqIkDYIACBDi4HSyb7xwfvfzOuXrnri8q3XeFkJ0yneRQmBlOQcCICBNcis1IcTGyeGt62UOdPZ62my2AyozA1BaCeg6txxibwyVIQACkpL37pupUa8G0BCmMgRAQJxyK7UH3245xy9iVhkCIMC2dJyo5pjtYgagNBHQqFeHrjIEZEq5ouNyCxBAAxANoAGIBtAARANoAKIBo6N8fKWfft/O2GX9/ncFAiBgQL378CYD17S7s8cMYAiH0fH2sK6MNAClrgHzK0HLrAINQIMqb8f7N/rZ/CqEeF5/2/O5m6PxBN/bJdf32yuD4uXI+drnQgAERKE+3jeqoE+e71mWRggEjDYBvjNgwApdGiZMiLlXwYhCCIAAU9fLjpM/d3N0HD3R8akvvenH231PD3MuBECAqTzPyi+vjq99SVLcqtb3cm7y776V4/rnQgAERMdBfBXUb+WI3+fkBQGWlVQD5leGdUEAMyCUdnf2uGUISK9yRcflFiCABiAaMKIz4ElphluAgBEmQCxMCyGWX/66DR2cTt5+Jh53HAJsE7D86R+8aTEOAda1MM2yubgCuyvnvn7FK2BRzADrDXhWYllcEMATRAMQDaAByJL+AoweLGUs+PqnAAAAEHRFWHRMb2RlUE5HADIwMTEwMjIx41m2wQAAAABJRU5ErkJggg==");
+      	background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAACACAIAAABMXPacAAAEx0lEQVR4Ae2dsWsbSRTG3wafwCe8RCLCxxWGuImVhMMqUgZONhgTH6fCYo9LiAJuXVqYdEtac63bQHSEYCEXKmyECqu4P0BCcAfXqEiTImCbA2FQiqRYnzze2R2NVrua1e73McXw9s0bad77vddq9wyTbmvQqhLRRumciGqdlO2r3tWIKJE3bHbI27vdwcOp1ZzbBz6HUBACAWEiwOpibM8S9ztMAhAQxRngNsf5mQ6BACQAQgKiNgOalTQR6XgbEBA7AhJ5Ay8CAmI/A/zS7nI/oMiHvSQIgGYlAf/+YV+sfVwfJACatQQ8KNODssNe7MlarNoXn0UCICQACYDG11wQQXeX+w79XWBx27tY2PiHvSQIgHwiYNCqjnU4kTcEXw/qjUB/+n5h05m2wBQEbSAgfDNgo3RORLVOSnBM72qSF2w9+yz4enKasfnwFrdTQRPG04YZEA8CZkXjsuWNP8sSnEBA+AhoVtJEpAdwmXw18Z7iWp5dgQDVumeYtqVnsnomS+srjsv6yp9il/m6bL4uz2cfz2cf0/P7gsX7+HXKX4v1j8T/2nqZ4t5icW9R/t1AQPhmgKXi6gUR1Top5T/RXNomojcfj6dw11WujxkAAgLTfDvp4dRBvUFElJu0cqdf3SAABDhpv7Bpr26llctzOU1WQEDUCTCXtm/qve1c77wPa3GYClwcmeki9lE1IUBA1AmQ6fK8j8wpnht+uoh93DzFtIEAECAnvta8+bgR442tyT1BAAgYpcNecqTP7nI/JGx5oxAEgAA/NEnn9bdyZagFASAgGG09+yz4enKasflYFhl6WErc/DEDQECYxNf7JNzwVc+TpFYgAATI1bW4Wh9995KI/v7y51iUhEEgAAQQ1T5972ifbyeH+6tc32ZnT520G0R09WPqxkcYmfUBASAgTDKXtonozcfjYdWzHIw4++SX4f6g3hBExgyAwkrAdeXmJjgbQGQQAAKmJavve9N+YVNAwySRQQAICFLm0raod7cbNh83i7fIIAAEqBbfr2V8vJ3CDIDCRMB+YXPmIoMAEOCHDntJvD4IQAKQADxBTGdAVFXrpEAACIiZBq3qcK93tZGeibwBAkBA5LRROh85A3g+QEB0Cbj719uIPdbl0x3fY4KAqM+AF69+i8AzvX93NNKnWUkTkQ4CQICTzmZ2HqyN7vuJvIEZMKtSl4C1HdHyFgEJgMI6A1y66j/1D0T0sPC7bX/tIzE5bp1i47udZUGxfFh/6XtBAAjwQw617ymCPHmudykaISAg3gS4zoAxI1zTsOCFmFsRPFEIAkCA16pnK47dX/vIVPTClUt8pqefvXW8fZJ7QQAI8CqrZtnOK1PXriRx1crHt3z+97/5ytrl7wUBIMA/DoKLwH9lLW776QsExISAtZ0IP+KgVR3LP5E3QEBsCHj/7igmT7lROieiWicl8NG7GmZAbAi4fBrlvu+XQEDUZ0B81KykiUgHASAgdkrkDSIatKpE9N9PXx199K429AQBGMLRVXH1orh6gQTMjDQ9k8UroAXFmABaX7E619BU66TYjgZ7oHYQoJqA4t4ialOhHQQo1/oKlsqFJ1C7NPPXn9EFFAozQHkCfshgKVwgAC0ICYCQACQAUqRvho7ZYpUy6CsAAAAQdEVYdExvZGVQTkcAMjAxMTAyMjHjWbbBAAAAAElFTkSuQmCC");
       	-repeat center;
       	-webkit-background-size:cover; -moz-background-size:cover; -o-background-size:cover; background-size:cover;
       }
