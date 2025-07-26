@@ -8,7 +8,8 @@ cartdata("tiny_flappy_bird")
 
 -- setup global references
 global = _ENV
-noop = function()end
+_noop = function()end
+_after_draw = _noop
 
 -- initialize cartridge
 function _init()
@@ -31,17 +32,5 @@ end
 -- draw current scene
 function _draw()
   scene.current:draw()
-end
-
--- input detection helpers
-function input()
-  return any_button() or click()
-end
-
-function any_button()
-  return btnp() > 0
-end
-
-function click()
-  return not mouse_was_down and mouse_down
+  _after_draw()
 end

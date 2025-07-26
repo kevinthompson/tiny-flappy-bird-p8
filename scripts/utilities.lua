@@ -10,3 +10,16 @@ function printc(str,y,clr,w)
 	local x=peek2(0x5f28) + center - (#str*w)/2
 	print(str,x,peek2(0x5f2a) + y,clr)
 end
+
+-- input detection helpers
+function input()
+  return any_button() or click()
+end
+
+function any_button()
+  return btnp() > 0
+end
+
+function click()
+  return not mouse_was_down and mouse_down
+end
